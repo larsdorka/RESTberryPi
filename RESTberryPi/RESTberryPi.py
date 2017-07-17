@@ -1,8 +1,6 @@
-import RPi.GPIO as GPIO
 import time
 
 import ioHandler
-
 
 # main application loop
 if __name__ == '__main__':
@@ -11,9 +9,8 @@ if __name__ == '__main__':
     counter = 0
     while True:
         time.sleep(0.05)
-        for index in range(len(pins_out)):
-            state = counter & (2 ** index)
-            pin = pins_out[index]
-            GPIO.output(pin, state)
+        for index in range(ioHandler.output_channels):
+            state = (counter & (2 ** index)) == 1
+            ioHandler.set_channel(index, state)
         counter += 1
         counter %= 256
