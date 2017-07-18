@@ -9,7 +9,7 @@ if __name__ == '__main__':
     counter = 0
     while True:
         time.sleep(0.05)
-        for index in range(ioHandler.output_channels):
+        for index in range(len(ioHandler.output_channels)):
             state = (counter & (2 ** index)) == 1
             ioHandler.set_channel(index, state)
         counter += 1
