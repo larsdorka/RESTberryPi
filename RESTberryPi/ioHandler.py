@@ -15,7 +15,8 @@ class IOHandler:
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.output_channels, GPIO.OUT, initial=GPIO.HIGH)
         GPIO.setup(self.input_channels, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        GPIO.add_event_detect(self.input_channels, GPIO.BOTH, callback=self.input_edge_callback, bouncetime=100)
+        for channel in self.input_channels:
+            GPIO.add_event_detect(channel, GPIO.BOTH, callback=self.input_edge_callback, bouncetime=100)
 
     def input_edge_callback(self, channel):
         """callback to handle detected input edges
