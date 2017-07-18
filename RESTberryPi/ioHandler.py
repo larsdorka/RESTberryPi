@@ -18,12 +18,17 @@ class IOHandler:
         GPIO.add_event_detect(self.input_channels, GPIO.BOTH, callback=self.input_edge_callback, bouncetime=100)
 
     def input_edge_callback(self, channel):
-        """callback to handle detected input edges"""
+        """callback to handle detected input edges
+        :param channel: the numebr of the physical pin with detected edge
+        """
         pin = self.input_channels.index(channel)
         self.input_states[pin] = GPIO.input(pin) == GPIO.HIGH
 
     def set_channel(self, channel, state):
-        """sets an output based on the physical pin"""
+        """sets an output based on the physical pin
+        :param channel: the number of the physical pin to set
+        :param state: the boolean state of the output to set
+        """
         if channel in self.output_channels:
             if state is True:
                 GPIO.output(channel, GPIO.HIGH)
@@ -31,7 +36,10 @@ class IOHandler:
                 GPIO.output(channel, GPIO.LOW)
 
     def set_pin(self, pin, state):
-        """sets an output based on the channel defined in the output channel list"""
+        """sets an output based on the channel defined in the output channel list
+        :param pin: the index of the configured input pin to set
+        :param state: the boolean state of the output to set
+        """
         if len(self.output_channels) > pin:
             if state is True:
                 GPIO.output(self.output_channels[pin], GPIO.HIGH)
@@ -39,7 +47,10 @@ class IOHandler:
                 GPIO.output(self.output_channels[pin], GPIO.LOW)
 
     def get_channel(self, channel):
-        """reads an input data based on the physical pin"""
+        """reads an input data based on the physical pin
+        :param channel: the number of the physical pin to read
+        :return: the boolean state of the input
+        """
         result = False
         if channel in self.input_channels:
             pin = self.input_channels.index(channel)
@@ -47,7 +58,10 @@ class IOHandler:
         return result
 
     def get_pin(self, pin):
-        """reads an input data based on the channel defined in the input channel list"""
+        """reads an input data based on the channel defined in the input channel list
+        :param pin: the index of the configured input pin to read
+        :return: the boolean state of the input
+        """
         result = False
         if len(self.input_channels) > pin:
             result = self.input_states[pin]
