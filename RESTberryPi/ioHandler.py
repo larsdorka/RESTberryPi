@@ -13,7 +13,7 @@ class IOHandler:
     def setup_pins(self):
         """initializes the input and output pins"""
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(self.output_channels, GPIO.OUT, initial=GPIO.HIGH)
+        GPIO.setup(self.output_channels, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(self.input_channels, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         for channel in self.input_channels:
             GPIO.add_event_detect(channel, GPIO.BOTH, callback=self.input_edge_callback, bouncetime=100)
