@@ -12,7 +12,7 @@ def send_index_page():
 
 @app.route('/api/gpioWrite/channel/<channel>/state/<state>', methods=['GET'])
 def gpio_write(channel, state):
-    gpio_write_request.on_next({'pin': channel, 'state': state})
+    gpio_write_request.on_next({'channel': channel, 'state': state})
     return "received and put in queue: channel {}, state {}".format(channel, state)
 
 
