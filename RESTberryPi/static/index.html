@@ -23,7 +23,6 @@
         <ul class="nav nav-tabs" id="myTabs">
             <li role="presentation" class="active"><a href="#static">Static text</a></li>
             <li role="presentation"><a href="#apidoc">API doc</a></li>
-            <li role="presentation"><a href="#led">LED</a></li>
         </ul>
 
         <div class="tab-content">
@@ -31,77 +30,58 @@
             <div role="tabpanel" class="tab-pane fade in active" id="static">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Send some text to show on the display</h3>
+                        <h3 class="panel-title">Activate / deactivate the configured GPIO channels</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label for="colorContentInput" class="col-md-2 control-label">Color content</label>
-                                <div class="col-md-4">
-                                    <input type="text"
-                                           class="form-control"
-                                           id="colorContentInput"
-                                           placeholder="color codings...">
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3">
+                                <button class="btn btn-danger btn-lg"
+                                        id="btn_chan_1"
+                                        name="btn_chan">
+                                    0
+                                </button>
+                                <button class="btn btn-danger btn-lg"
+                                        id="btn_chan_2"
+                                        name="btn_chan">
+                                    1
+                                </button>
+                                <button class="btn btn-danger btn-lg"
+                                        id="btn_chan_3"
+                                        name="btn_chan">
+                                    2
+                                </button>
+                                <button class="btn btn-danger btn-lg"
+                                        id="btn_chan_4"
+                                        name="btn_chan">
+                                    3
+                                </button>
+                                <button class="btn btn-danger btn-lg"
+                                        id="btn_chan_5"
+                                        name="btn_chan">
+                                    4
+                                </button>
+                                <button class="btn btn-danger btn-lg"
+                                        id="btn_chan_6"
+                                        name="btn_chan">
+                                    5
+                                </button>
+                                <button class="btn btn-danger btn-lg"
+                                        id="btn_chan_7"
+                                        name="btn_chan">
+                                    6
+                                </button>
+                                <button class="btn btn-danger btn-lg"
+                                        id="btn_chan_8"
+                                        name="btn_chan">
+                                    7
+                                </button>
                             </div>
-                            <div class="form-group">
-                                <label for="colorModeSelector" class="col-md-2 control-label">Color mode</label>
-                                <div class="col-md-4">
-                                    <select class="form-control"
-                                            id="colorModeSelector">
-                                        <option value="content" selected>use content string</option>
-                                        <option value="red">all red</option>
-                                        <option value="orange">all orange</option>
-                                        <option value="green">all green</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="textContentInput" class="col-md-2 control-label">Text content</label>
-                                <div class="col-md-4">
-                                    <input type="text"
-                                           class="form-control"
-                                           id="textContentInput"
-                                           placeholder="text to display...">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="textModeSelector" class="col-md-2 control-label">Text mode</label>
-                                <div class="col-md-4">
-                                    <select class="form-control"
-                                            id="textModeSelector">
-                                        <option value="0" selected>normal</option>
-                                        <option value="/">centered</option>
-                                        <option value="1">blinking</option>
-                                        <option value="5">moving</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="well well-lg">
-                                <span class="label label-default">Preview</span>
-                                <div class="style-preview"
-                                     id="previewBox">
-                                </div>
-                                <h6 class="text-danger"
-                                    id="errorText"></h6>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-1">
-                                    <button class="btn btn-success btn-lg"
-                                            id="btn_send">
-                                        send
-                                    </button>
-                                    <button class="btn btn-danger btn-lg"
-                                            id="btn_clear">
-                                        clear
-                                    </button>
-                                </div>
-                            </div>
-
                         </div>
+
                     </div>
                 </div>
             </div>
+
 
             <div role="tabpanel" class="tab-pane fade" id="apidoc">
                 <div class="panel panel-info">
@@ -132,46 +112,6 @@
                                             open
                                         </button>
                                     </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div role="tabpanel" class="tab-pane fade" id="led">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Controlling the debug LED</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label for="channelSelect" class="col-md-2 control-label">Channel</label>
-                                <div class="col-md-4">
-                                    <select class="form-control"
-                                            id="channelSelect">
-                                        <option value="R" selected>red</option>
-                                        <option value="G">green</option>
-                                        <option value="B">blue</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="valueInput" class="col-md-2 control-label">Value</label>
-                                <div class="col-md-4">
-                                    <input type="text"
-                                           class="form-control"
-                                           id="valueInput"
-                                           placeholder="select value">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-1">
-                                    <button class="btn btn-success btn-lg"
-                                            id="btn_setled">
-                                        set LED
-                                    </button>
                                 </div>
                             </div>
                         </div>
