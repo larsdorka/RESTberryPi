@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+from rx import subjects
 
 
 class IOHandler:
@@ -9,14 +10,28 @@ class IOHandler:
         self.output_channels = [12, 16, 18, 22, 32, 36, 38, 40]
         self.input_channels = [11, 13, 15, 29, 31, 33, 35, 37]
         self.input_states = [False] * 8
+        self.observable = None
+        self.observer = None
 
-    def setup_pins(self):
+    def setup_pins(self, observable: subjects.Subject):
         """initializes the input and output pins"""
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.output_channels, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(self.input_channels, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         for channel in self.input_channels:
             GPIO.add_event_detect(channel, GPIO.BOTH, callback=self.input_edge_callback, bouncetime=100)
+        observable.subscribe(on_next=self.gpio_write_request_handler)
+
+    def gpio_write_request_handler(self, value):
+        channel = int(value['channel'])
+        string_state = value['state']
+        string_state.upper()
+        bool_state = False
+        if string_state in ['ON', 'HIGH', '1']:
+            bool_state = True
+        elif string_state in ['OFF', 'LOW', '0']:
+            bool_state = False
+        self.set_channel(channel, bool_state)
 
     def input_edge_callback(self, pin):
         """callback to handle detected input edges
