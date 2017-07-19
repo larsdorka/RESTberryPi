@@ -1,14 +1,14 @@
 from flask import Flask, request
 from rx import subjects
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 subject = subjects.Subject()
 
 
 @app.route('/', methods=['GET'])
-def send_start_page():
-    return "use /api/gpio?pin=1&state=HIGH"
+def send_index_page():
+    return app.send_static_file('index.html')
 
 
 @app.route('/api/gpio', methods=['GET'])
@@ -27,4 +27,4 @@ def pin_handler(value):
 
 if __name__ == '__main__':
     subscription = subject.subscribe(on_next=lambda x: pin_handler(x))
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
