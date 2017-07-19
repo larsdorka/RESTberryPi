@@ -1,0 +1,82 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "RESTberryPi WebService",
+    "description": "Rest API for Raspberry Pi hardware I/O",
+    "termsOfService": "Internal use only",
+    "contact": {
+      "name": "Lars Dorka"
+    },
+    "license": {
+      "name": "GPLv3"
+    }
+  },
+  "host": "0.0.0.0",
+  "basePath": "/api",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/gpioWrite/channel/{channel}/state/{state}": {
+      "get": {
+        "tags": [
+          "gpioWrite"
+        ],
+        "summary": "send GPIO channel write request with URL parameters",
+        "operationId": "gpioWrite_path",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "channel",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/gpioWrite": {
+      "get": {
+        "tags": [
+          "gpioWrite"
+        ],
+        "summary": "send GPIO channel write request with URL parameters",
+        "operationId": "gpioWrite_query",
+        "consumes": [],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "channel",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

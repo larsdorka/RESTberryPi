@@ -1,5 +1,6 @@
 from flask import Flask, request
 from rx import subjects
+import os
 
 app = Flask(__name__, static_url_path='')
 
@@ -9,6 +10,11 @@ subject = subjects.Subject()
 @app.route('/', methods=['GET'])
 def send_index_page():
     return app.send_static_file('index.html')
+
+
+@app.route('/api-doc', methods=['GET'])
+def send_api_doc():
+    return app.send_static_file(os.path.normpath("api-doc/RESTberryPiApi.json"))
 
 
 @app.route('/api/gpio', methods=['GET'])

@@ -1,0 +1,24 @@
+.style-preview {
+    display: flex;
+    flex-direction: row;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.style-red {
+    color: red;
+}
+
+.style-orange {
+    color: orange;
+}
+
+.style-green {
+    color: green;
+}
+
+.style-black {
+    color: black;
+}
