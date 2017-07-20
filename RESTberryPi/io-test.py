@@ -10,7 +10,7 @@ if __name__ == '__main__':
     while True:
         time.sleep(0.05)
         for index in range(len(io.output_channels)):
-            state = (counter & (2 ** index)) == 1
+            state = (counter & (2 ** index)) > 0
             io.set_channel(index, state)
         counter += 1
         counter %= 256
