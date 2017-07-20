@@ -27,11 +27,11 @@ class IOHandler:
     def gpio_write_request_handler(self, value):
         channel = int(value['channel'])
         string_state = value['state']
-        string_state.upper()
+        string_state = string_state.upper()
         bool_state = False
-        if string_state in ['ON', 'HIGH', '1']:
+        if string_state in ['TRUE', 'ON', 'HIGH', '1']:
             bool_state = True
-        elif string_state in ['OFF', 'LOW', '0']:
+        elif string_state in ['FALSE', 'OFF', 'LOW', '0']:
             bool_state = False
         self.set_channel(channel, bool_state)
 
