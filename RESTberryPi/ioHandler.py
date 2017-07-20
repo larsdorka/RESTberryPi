@@ -7,9 +7,9 @@ class IOHandler:
 
     def __init__(self):
         """constructor"""
-        self.output_channels = [12, 16, 18, 22, 32, 36, 38, 40]
-        self.input_channels = [11, 13, 15, 29, 31, 33, 35, 37]
-        self.input_states = [False] * 8
+        self.output_channels = [11, 12, 13, 15, 16, 18, 22, 7]
+        self.input_channels = [37, 32, 36, 38]
+        self.input_states = [False] * len(self.input_channels)
         self.observable = None
         self.observer = None
 
