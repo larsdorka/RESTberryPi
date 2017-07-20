@@ -1,7 +1,8 @@
 $(function () {
-    $('#myTabs a[href="#static"]').click(function (e) {
+    $('#myTabs a[href="#gpio"]').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
+        startIntervalRead();
     });
 });
 
@@ -9,6 +10,7 @@ $(function () {
     $('#myTabs a[href="#apidoc"]').click(function (e) {
         e.preventDefault();
         $(this).tab('show');
+        stopIntervalRead();
         $.ajax({
             url: "api",
             dataType: 'text',
@@ -34,7 +36,6 @@ $(function () {
 });
 
 function gpioWrite_query() {
-    console.log($(this).attr('class'));
     const state = $(this).hasClass('btn-danger');
     if (!state) {
         $(this).removeClass('btn-success');
@@ -47,3 +48,23 @@ function gpioWrite_query() {
     $.get("api/gpioWrite" + params, function () {
     });
 };
+
+var intervalReadFunction;
+
+function startIntervalRead() {
+    intervalReadFunction = setInterval(gpioRead_query, 1000)
+}
+
+function stopIntervalRead() {
+    clearInterval(intervalReadFunction);
+}
+
+$(function () {
+    startIntervalRead();
+});
+
+function gpioRead_query() {
+    $.get("api/gpioReadAll", function (response) {
+        console.log(response);
+    });
+}
