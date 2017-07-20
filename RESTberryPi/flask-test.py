@@ -1,25 +1,29 @@
 from flask import Flask, request
 from rx import subjects
-import os
 
 app = Flask(__name__, static_url_path='')
 
 subject = subjects.Subject()
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return app.send_static_file("404.html"), 404
+
+
 @app.route('/', methods=['GET'])
 def send_index_page():
-    return app.send_static_file('index.html')
+    return app.send_static_file("index.html")
 
 
-@app.route('/api-doc', methods=['GET'])
+@app.route('/api', methods=['GET'])
 def send_api_doc():
-    return app.send_static_file(os.path.normpath("api-doc/RESTberryPiApi.json"))
+    return app.send_static_file("api-doc/RESTberryPiApi.json")
 
 
-@app.route('/api/gpio', methods=['GET'])
+@app.route('/api/gpioWrite', methods=['GET'])
 def set_gpio():
-    pin = request.args.get('pin')
+    pin = request.args.get('channel')
     state = request.args.get('state')
     subject.on_next({'pin': pin, 'state': state})
     return "received and put in queue: pin {}, state {}".format(pin, state)
