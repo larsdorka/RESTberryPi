@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-from rx import subjects
 
 
 class IOHandler:
@@ -13,7 +12,7 @@ class IOHandler:
         self.observable = None
         self.observer = None
 
-    def setup_pins(self, observable: subjects.Subject):
+    def setup_pins(self, observable):
         """initializes the input and output pins"""
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.output_channels, GPIO.OUT, initial=GPIO.LOW)
