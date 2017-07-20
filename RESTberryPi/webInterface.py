@@ -35,4 +35,4 @@ def gpio_write_with_params():
 
 
 def run():
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', use_reloader=False)
