@@ -4,5 +4,6 @@ import webInterface
 # main application loop
 if __name__ == '__main__':
     io = ioHandler.IOHandler()
-    io.setup_pins(webInterface.gpio_write_request)
+    io.setup_pins()
+    io.setup_observer(webInterface.gpio_write_request)
     webInterface.run()
