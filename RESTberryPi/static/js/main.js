@@ -43,7 +43,7 @@ function gpioWrite_query() {
         $(this).removeClass('btn-danger');
         $(this).addClass('btn-success');
     }
-    var params = "?channel=" + $(this).text().trim() + "&state=" + state.toString();
+    var params = "?channel=" + $(this).text().trim() + "&state=" + !state.toString();
     $.get("api/gpioWrite" + params, function () {
     });
 };
