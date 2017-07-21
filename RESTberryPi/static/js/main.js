@@ -39,10 +39,10 @@ function gpioWrite_query() {
     const state = $(this).hasClass('btn-danger');
     if (!state) {
         $(this).removeClass('btn-success');
-        $(this).addClass('btn-danger');
+        $(this).addClass('btn-warning');
     } else {
         $(this).removeClass('btn-danger');
-        $(this).addClass('btn-success');
+        $(this).addClass('btn-warning');
     }
     var params = "?channel=" + $(this).text().trim() + "&state=" + state.toString();
     $.get("api/gpioWrite" + params, function () {
@@ -65,6 +65,20 @@ $(function () {
 
 function gpioRead_query() {
     $.get("api/gpioReadAll", function (response) {
-        console.log(response);
+        // console.log(response);
+        if (response !== null && response.length > 0) {
+            const myButtons = $("[name=btn_chan]");
+            for (var index = 0; index < myButtons.length; index++) {
+                if (index < response.length) {
+                    if (response[index]) {
+                        myButtons[index].removeClass('btn-warning');
+                        myButtons[index].addClass('btn-success');
+                    } else {
+                        myButtons[index].removeClass('btn-warning');
+                        myButtons[index].addClass('btn-danger')
+                    }
+                }
+            }
+        }
     });
 }
