@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from rx import subjects
+from rx import subjects, Observable
 
 
 class IOHandler:
@@ -23,7 +23,7 @@ class IOHandler:
         for channel in self.input_channels:
             GPIO.add_event_detect(channel, GPIO.BOTH, callback=self.input_edge_callback, bouncetime=100)
 
-    def setup_write_observer(self, observable):
+    def setup_write_observer(self, observable: Observable):
         """subscribes to an observable
         :param observable: an observable emitting GPIO write requests
         """
@@ -95,7 +95,7 @@ class IOHandler:
 
     def read_all_output_channels(self):
         """reads the state of all configured output channels and emits with observable"""
-        for index in self.output_channels:
+        for index in range(len(self.output_channels)):
             self.output_states[index] = GPIO.input(self.output_channels[index]) == GPIO.HIGH
         self.output_states_observable.on_next(self.output_states)
 
