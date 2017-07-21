@@ -1,5 +1,9 @@
-import RPi.GPIO as GPIO
 from rx import subjects, Observable
+import platform
+if platform.system() == "Windows":
+    import gpioMockup as GPIO
+else:
+    import RPi.GPIO as GPIO
 
 
 class IOHandler:
