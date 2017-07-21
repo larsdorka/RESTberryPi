@@ -65,7 +65,7 @@ $(function () {
 
 function gpioRead_query() {
     $.get("api/gpioReadAll", function (response) {
-        responseObj = JSON.parse(response);
+        const responseObj = JSON.parse(response);
         if (responseObj !== null && responseObj.length > 0) {
             const myButtons = $("[name=btn_chan]");
             for (var index = 0; index < myButtons.length; index++) {
