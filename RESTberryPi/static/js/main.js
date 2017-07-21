@@ -71,11 +71,11 @@ function gpioRead_query() {
             for (var index = 0; index < myButtons.length; index++) {
                 if (index < response.length) {
                     if (response[index]) {
-                        myButtons[index].removeClass('btn-warning');
-                        myButtons[index].addClass('btn-success');
+                        $(myButtons[index]).removeClass('btn-warning');
+                        $(myButtons[index]).addClass('btn-success');
                     } else {
-                        myButtons[index].removeClass('btn-warning');
-                        myButtons[index].addClass('btn-danger')
+                        $(myButtons[index]).removeClass('btn-warning');
+                        $(myButtons[index]).addClass('btn-danger')
                     }
                 }
             }
