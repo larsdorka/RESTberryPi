@@ -65,12 +65,12 @@ $(function () {
 
 function gpioRead_query() {
     $.get("api/gpioReadAll", function (response) {
-        // console.log(response);
-        if (response !== null && response.length > 0) {
+        responseObj = JSON.parse(response);
+        if (responseObj !== null && responseObj.length > 0) {
             const myButtons = $("[name=btn_chan]");
             for (var index = 0; index < myButtons.length; index++) {
-                if (index < response.length) {
-                    if (response[index]) {
+                if (index < responseObj.length) {
+                    if (responseObj[index] === true) {
                         $(myButtons[index]).removeClass('btn-warning');
                         $(myButtons[index]).addClass('btn-success');
                     } else {
