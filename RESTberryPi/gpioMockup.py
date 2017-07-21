@@ -22,7 +22,7 @@ def add_event_detect(channel, state, callback=0, bouncetime=0):
 
 
 def input(channel):
-    pass
+    return LOW
 
 
 def output(channel, state):
