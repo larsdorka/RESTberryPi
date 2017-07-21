@@ -101,7 +101,7 @@ class IOHandler:
 
     def cleanup(self):
         """performs the cleanup of all pins"""
-        GPIO.out(self.output_channels, GPIO.LOW)
+        GPIO.output(self.output_channels, GPIO.LOW)
         GPIO.cleanup(self.output_channels)
         GPIO.cleanup(self.input_channels)
         self.input_states = [False] * 8
